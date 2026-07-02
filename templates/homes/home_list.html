@@ -1,0 +1,83 @@
+{% extends "base/base.html" %}
+
+{% block title %}
+Homes
+{% endblock %}
+
+{% block content %}
+
+<h1>My Homes</h1>
+
+<hr>
+
+<p>
+
+<a href="{% url 'home_create' %}">
+    ➕ Add New Home
+</a>
+
+</p>
+
+{% if homes %}
+
+<table>
+
+    <thead>
+
+        <tr>
+
+            <th>Name</th>
+
+            <th>Address</th>
+
+            <th>Actions</th>
+
+        </tr>
+
+    </thead>
+
+    <tbody>
+
+        {% for home in homes %}
+
+        <tr>
+
+            <td>{{ home.name }}</td>
+
+            <td>{{ home.address }}</td>
+
+            <td>
+
+                <a href="{% url 'home_update' home.id %}">
+                    Edit
+                </a>
+
+                |
+
+                <a href="{% url 'home_delete' home.id %}">
+                    Delete
+                </a>
+
+            </td>
+
+        </tr>
+
+        {% endfor %}
+
+    </tbody>
+
+</table>
+
+{% else %}
+
+<h3>No Homes Added Yet</h3>
+
+<p>
+
+Click the button above to create your first home.
+
+</p>
+
+{% endif %}
+
+{% endblock %}

@@ -409,3 +409,43 @@ footer{
 }
 
 }
+/* Home Page */
+
+table{
+    width:100%;
+    background:white;
+    border-collapse:collapse;
+    margin-top:20px;
+}
+
+table th{
+    background:#1e293b;
+    color:white;
+    padding:15px;
+}
+
+table td{
+    padding:15px;
+    border-bottom:1px solid #ddd;
+}
+
+table tr:hover{
+    background:#f7f7f7;
+}
+
+a{
+    text-decoration:none;
+}
+
+button{
+    padding:12px 20px;
+    background:#2563eb;
+    color:white;
+    border:none;
+    border-radius:6px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#1d4ed8;
+}

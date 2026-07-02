@@ -1,0 +1,41 @@
+{% extends "base/base.html" %}
+
+{% block title %}
+Delete Home
+{% endblock %}
+
+{% block content %}
+
+<h1>Delete Home</h1>
+
+<hr>
+
+<h3>
+
+Are you sure you want to delete
+
+<strong>{{ home.name }}</strong>?
+
+</h3>
+
+<form method="POST">
+
+    {% csrf_token %}
+
+    <button type="submit">
+
+        Yes, Delete
+
+    </button>
+
+</form>
+
+<br>
+
+<a href="{% url 'home_list' %}">
+
+    Cancel
+
+</a>
+
+{% endblock %}
