@@ -1,0 +1,106 @@
+{% extends "base/base.html" %}
+
+{% block title %}
+Devices
+{% endblock %}
+
+{% block content %}
+
+<h1>Device Management</h1>
+
+<hr>
+
+<p>
+    <a href="{% url 'device_create' %}">
+        ➕ Add Device
+    </a>
+</p>
+
+{% if devices %}
+
+<table>
+
+    <thead>
+
+        <tr>
+
+            <th>Name</th>
+            <th>Type</th>
+            <th>Room</th>
+            <th>Brand</th>
+            <th>Model</th>
+            <th>Connection</th>
+            <th>Status</th>
+            <th>Action</th>
+
+        </tr>
+
+    </thead>
+
+    <tbody>
+
+        {% for device in devices %}
+
+        <tr>
+
+            <td>{{ device.name }}</td>
+
+            <td>{{ device.device_type }}</td>
+
+            <td>{{ device.room }}</td>
+
+            <td>{{ device.brand }}</td>
+
+            <td>{{ device.model }}</td>
+
+            <td>{{ device.connection_type }}</td>
+
+            <td>
+
+                {% if device.is_online %}
+
+                    🟢 Online
+
+                {% else %}
+
+                    🔴 Offline
+
+                {% endif %}
+
+            </td>
+
+            <td>
+
+                <a href="{% url 'device_update' device.id %}">
+                    Edit
+                </a>
+
+                |
+
+                <a href="{% url 'device_delete' device.id %}">
+                    Delete
+                </a>
+
+            </td>
+
+        </tr>
+
+        {% endfor %}
+
+    </tbody>
+
+</table>
+
+{% else %}
+
+<h2>No Devices Added</h2>
+
+<p>
+
+Click "Add Device" to create your first smart device.
+
+</p>
+
+{% endif %}
+
+{% endblock %}

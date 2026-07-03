@@ -1,26 +1,39 @@
 from django.db import models
 from django.conf import settings
-from devices.models import Device
+
+from devices.models import ConnectedDevice
 
 
 class DeviceLog(models.Model):
 
-    ACTION_STATUS = [
+    STATUS = [
+
         ("success", "Success"),
+
         ("failed", "Failed"),
+
     ]
 
     device = models.ForeignKey(
-        Device,
+
+        ConnectedDevice,
+
         on_delete=models.CASCADE,
-        related_name="logs"
+
+        related_name="logs",
+
     )
 
     user = models.ForeignKey(
+
         settings.AUTH_USER_MODEL,
+
         on_delete=models.SET_NULL,
+
         null=True,
-        blank=True
+
+        blank=True,
+
     )
 
     action = models.CharField(max_length=100)
@@ -28,12 +41,21 @@ class DeviceLog(models.Model):
     response = models.TextField(blank=True)
 
     status = models.CharField(
+
         max_length=20,
-        choices=ACTION_STATUS,
-        default="success"
+
+        choices=STATUS,
+
+        default="success",
+
     )
 
-    created_at = models.DateTimeField(auto_now_add=True)
+    created_at = models.DateTimeField(
+
+        auto_now_add=True,
+
+    )
 
     def __str__(self):
+
         return f"{self.device.name} - {self.action}"

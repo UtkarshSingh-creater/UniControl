@@ -1,0 +1,33 @@
+{% extends "base/base.html" %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+    <h2>Pair Device</h2>
+
+    <hr>
+
+    <p><strong>Name:</strong> {{ device.device_name }}</p>
+
+    <p><strong>Brand:</strong> {{ device.brand }}</p>
+
+    <p><strong>Connection:</strong> {{ device.connection_type }}</p>
+
+    <form method="POST">
+
+        {% csrf_token %}
+
+        {{ form.as_p }}
+
+        <button class="btn btn-success">
+
+            Pair Device
+
+        </button>
+
+    </form>
+
+</div>
+
+{% endblock %}

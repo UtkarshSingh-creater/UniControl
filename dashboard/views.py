@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 
-from devices.models import Device
+from devices.models import ConnectedDevice
 from homes.models import Home
 from rooms.models import Room
 from automation.models import Automation
@@ -11,14 +11,14 @@ from notifications.models import Notification
 @login_required(login_url="login")
 def dashboard(request):
 
-    total_devices = Device.objects.count()
+    total_devices = ConnectedDevice.objects.count()
 
-    online_devices = Device.objects.filter(
-        is_online=True
+    online_devices = ConnectedDevice.objects.filter(
+        online=True
     ).count()
 
-    offline_devices = Device.objects.filter(
-        is_online=False
+    offline_devices = ConnectedDevice.objects.filter(
+        online=False
     ).count()
 
     total_homes = Home.objects.count()

@@ -49,6 +49,8 @@ INSTALLED_APPS = [
     'notifications',
     'rooms',
     'scheduler',
+    'discovery',
+    'controllers',
 ]
 
 MIDDLEWARE = [

@@ -1,0 +1,67 @@
+{% extends "base/base.html" %}
+
+{% block content %}
+
+<h1>Rooms</h1>
+
+<a href="{% url 'room_create' %}">
+    Add Room
+</a>
+
+<table>
+
+<tr>
+
+<th>Home</th>
+
+<th>Room</th>
+
+<th>Floor</th>
+
+<th>Action</th>
+
+</tr>
+
+{% for room in rooms %}
+
+<tr>
+
+<td>{{ room.home.name }}</td>
+
+<td>{{ room.name }}</td>
+
+<td>{{ room.floor }}</td>
+
+<td>
+
+<a href="{% url 'room_update' room.id %}">
+Edit
+</a>
+
+|
+
+<a href="{% url 'room_delete' room.id %}">
+Delete
+</a>
+
+</td>
+
+</tr>
+
+{% empty %}
+
+<tr>
+
+<td colspan="4">
+
+No Rooms Found
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+{% endblock %}

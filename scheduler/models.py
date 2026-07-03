@@ -1,11 +1,11 @@
 from django.db import models
-from devices.models import Device
+from devices.models import ConnectedDevice
 
 
 class Schedule(models.Model):
 
     device = models.ForeignKey(
-        Device,
+        ConnectedDevice,
         on_delete=models.CASCADE,
         related_name="schedules"
     )

@@ -22,4 +22,8 @@ urlpatterns = [
     path("",include("dashboard.urls")),
     path("accounts/",include("accounts.urls")),
     path("homes/", include("homes.urls")),
+    path("rooms/", include("rooms.urls")),
+    path("devices/", include("devices.urls")),
+    path("discovery/",include("discovery.urls"),
+    ),
 ]

@@ -1,0 +1,138 @@
+{% extends "base/base.html" %}
+
+{% block title %}
+Device Discovery
+{% endblock %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+
+        <h2>🔍 Device Discovery</h2>
+
+        <a href="{% url 'scan_devices' %}" class="btn btn-primary">
+            Scan Network
+        </a>
+
+    </div>
+
+    {% if devices %}
+
+    <div class="table-responsive">
+
+        <table class="table table-bordered table-hover align-middle">
+
+            <thead class="table-dark">
+
+                <tr>
+
+                    <th>Name</th>
+
+                    <th>Brand</th>
+
+                    <th>Model</th>
+
+                    <th>Type</th>
+
+                    <th>Connection</th>
+
+                    <th>IP Address</th>
+
+                    <th>MAC Address</th>
+
+                    <th>Status</th>
+
+                    <th>Action</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+            {% for device in devices %}
+
+                <tr>
+
+                    <td>{{ device.device_name }}</td>
+
+                    <td>{{ device.brand|default:"Unknown" }}</td>
+
+                    <td>{{ device.model|default:"-" }}</td>
+
+                    <td>{{ device.device_type }}</td>
+
+                    <td>{{ device.connection_type|title }}</td>
+
+                    <td>{{ device.ip_address|default:"-" }}</td>
+
+                    <td>{{ device.mac_address|default:"-" }}</td>
+
+                    <td>
+
+                        {% if device.online %}
+
+                            <span class="badge bg-success">
+                                Online
+                            </span>
+
+                        {% else %}
+
+                            <span class="badge bg-danger">
+                                Offline
+                            </span>
+
+                        {% endif %}
+
+                    </td>
+
+                    <td>
+
+                        {% if device.paired %}
+
+                            <span class="badge bg-success">
+                                Paired
+                            </span>
+
+                        {% else %}
+
+                            <a href="{% url 'pair_device' device.id %}"
+                               class="btn btn-sm btn-primary">
+
+                                Pair
+
+                            </a>
+
+                        {% endif %}
+
+                    </td>
+
+                </tr>
+
+            {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+    {% else %}
+
+        <div class="alert alert-warning">
+
+            <h5>No devices discovered.</h5>
+
+            <p class="mb-0">
+                Click the <strong>Scan Network</strong> button to search for nearby devices.
+            </p>
+
+        </div>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}

@@ -6,11 +6,19 @@
 
 <div class="cards">
 
-    <div class="card">
-        <h3>Total Devices</h3>
-        <p>{{ total_devices }}</p>
-    </div>
+   <div class="card">
 
+<h3>Total Devices</h3>
+
+<p>{{ total_devices }}</p>
+
+<a href="{% url 'device_list' %}">
+
+View Devices
+
+</a>
+
+</div>
     <div class="card">
         <h3>Online Devices</h3>
         <p>{{ online_devices }}</p>
